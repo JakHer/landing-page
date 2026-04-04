@@ -1,0 +1,125 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  fill="none"
+>
+  <rect width="1200" height="630" fill="#050505" />
+  <rect x="24" y="24" width="1152" height="582" rx="40" stroke="#27272A" />
+
+  <g opacity="0.8">
+    <circle cx="1034" cy="118" r="204" fill="url(#glowA)" />
+    <circle cx="912" cy="520" r="220" fill="url(#glowB)" />
+  </g>
+
+  <rect x="84" y="84" width="120" height="120" rx="28" fill="#050505" />
+  <rect
+    x="84"
+    y="84"
+    width="120"
+    height="120"
+    rx="28"
+    stroke="white"
+    stroke-opacity="0.18"
+    stroke-width="2"
+  />
+  <path
+    d="M138 112V156C138 169.255 127.255 180 114 180C108.692 180 103.93 178.238 100 175"
+    stroke="white"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M160 112V180"
+    stroke="white"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M160 145H184"
+    stroke="white"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M184 112V180"
+    stroke="white"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+
+  <text
+    x="84"
+    y="264"
+    fill="#A1A1AA"
+    font-family="'Inter', Arial, sans-serif"
+    font-size="24"
+    letter-spacing="7"
+  >
+    FRONTEND REACT DEVELOPER
+  </text>
+
+  <text
+    x="84"
+    y="360"
+    fill="white"
+    font-family="'Space Grotesk', 'Inter', Arial, sans-serif"
+    font-size="66"
+    font-weight="700"
+  >
+    Fast, conversion-focused
+  </text>
+  <text
+    x="84"
+    y="438"
+    fill="white"
+    font-family="'Space Grotesk', 'Inter', Arial, sans-serif"
+    font-size="66"
+    font-weight="700"
+  >
+    React interfaces for startups.
+  </text>
+
+  <text
+    x="84"
+    y="504"
+    fill="#D4D4D8"
+    font-family="'Inter', Arial, sans-serif"
+    font-size="28"
+  >
+    Jakub Hermyt builds modern frontends with React and TypeScript,
+  </text>
+  <text
+    x="84"
+    y="544"
+    fill="#D4D4D8"
+    font-family="'Inter', Arial, sans-serif"
+    font-size="28"
+  >
+    focused on performance, UX, and maintainable code.
+  </text>
+
+  <text
+    x="908"
+    y="548"
+    fill="#A1A1AA"
+    font-family="'Inter', Arial, sans-serif"
+    font-size="24"
+    text-anchor="end"
+  >
+    jakher.dev
+  </text>
+
+  <defs>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1034 118) rotate(90) scale(204)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.18" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(912 520) rotate(90) scale(220)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.08" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+</svg>
