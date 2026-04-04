@@ -1,0 +1,44 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="256"
+  height="256"
+  viewBox="0 0 256 256"
+  fill="none"
+>
+  <rect width="256" height="256" rx="56" fill="#050505" />
+  <rect
+    x="10"
+    y="10"
+    width="236"
+    height="236"
+    rx="46"
+    stroke="white"
+    stroke-opacity="0.18"
+    stroke-width="2"
+  />
+  <path
+    d="M126 66V160C126 181.539 108.539 199 87 199C78.114 199 70.138 196.024 64 191"
+    stroke="white"
+    stroke-width="18"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M170 66V194"
+    stroke="white"
+    stroke-width="18"
+    stroke-linecap="round"
+  />
+  <path
+    d="M170 130H214"
+    stroke="white"
+    stroke-width="18"
+    stroke-linecap="round"
+  />
+  <path
+    d="M214 66V194"
+    stroke="white"
+    stroke-width="18"
+    stroke-linecap="round"
+  />
+</svg>

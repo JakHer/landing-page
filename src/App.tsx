@@ -1,4 +1,5 @@
 import Hero from "./components/Hero/Hero";
+import Contact from "./components/Contact/Contact";
 import Projects from "./components/Projects/Projects";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       />
 
       <Projects username="JakHer" limit={6} />
+      <Contact />
     </>
   );
 };

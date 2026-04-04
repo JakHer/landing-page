@@ -13,17 +13,30 @@ export type GitHubRepo = {
 export const fetchGithubRepos = async (
   username: string,
 ): Promise<GitHubRepo[]> => {
-  const res = await fetch(
-    `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
-    {
-      headers: { Accept: "application/vnd.github+json" },
-    },
-  );
+  const repos: GitHubRepo[] = [];
+  let page = 1;
 
-  if (!res.ok) {
-    throw new Error(`GitHub API error: ${res.status}`);
+  while (true) {
+    const res = await fetch(
+      `https://api.github.com/users/${username}/repos?sort=updated&per_page=100&page=${page}`,
+      {
+        headers: { Accept: "application/vnd.github+json" },
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error(`GitHub API error: ${res.status}`);
+    }
+
+    const batch = (await res.json()) as GitHubRepo[];
+    repos.push(...batch);
+
+    if (batch.length < 100) {
+      break;
+    }
+
+    page += 1;
   }
 
-  const data = (await res.json()) as GitHubRepo[];
-  return data;
+  return repos;
 };
