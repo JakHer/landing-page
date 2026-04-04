@@ -18,20 +18,32 @@ const Projects = ({ username, limit = 6 }: ProjectsProps) => {
   } = useGithubRepos({ username, limit });
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="section-shell py-24">
       <div className="mx-auto w-full max-w-6xl px-6">
-        <h2
-          id="projects-heading"
-          className="font-display text-3xl font-bold md:text-4xl"
-        >
-          Selected Projects
-        </h2>
-        <p className="mt-4 max-w-[65ch] text-zinc-300">
-          Real repositories pulled directly from my GitHub profile.
-        </p>
+        <div className="reveal-up flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.22em] text-zinc-500">
+              Recent work
+            </p>
+            <h2
+              id="projects-heading"
+              className="mt-3 font-display text-3xl font-bold tracking-[-0.03em] md:text-5xl"
+            >
+              Selected Projects
+            </h2>
+            <p className="mt-4 max-w-[62ch] text-zinc-300">
+              Real repositories pulled directly from my GitHub profile, chosen
+              to show frontend quality, momentum, and technical range.
+            </p>
+          </div>
+
+          <div className="glass-card rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-zinc-300">
+            Live GitHub data. Filtered and ranked from current repositories.
+          </div>
+        </div>
 
         {isLoading && (
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {Array.from({ length: limit }).map((_, idx) => (
               <ProjectCardSkeleton key={idx} />
             ))}
@@ -39,17 +51,19 @@ const Projects = ({ username, limit = 6 }: ProjectsProps) => {
         )}
 
         {!isLoading && isFetching && (
-          <p className="mt-4 text-xs text-zinc-500">Refreshing projects…</p>
+          <p className="mt-5 text-xs uppercase tracking-[0.18em] text-zinc-500">
+            Refreshing projects...
+          </p>
         )}
 
         {isError && (
-          <div className="mt-8 rounded-xl border border-red-900 bg-red-950/30 p-4">
+          <div className="mt-8 rounded-2xl border border-red-900/60 bg-red-950/20 p-5">
             <p className="text-red-300">
               {(error as Error)?.message || "Failed to load projects."}
             </p>
             <button
               onClick={() => refetch()}
-              className="mt-3 rounded-lg border border-red-700 px-4 py-2 text-sm text-red-200 hover:bg-red-900/30"
+              className="mt-4 rounded-xl border border-red-700 px-4 py-2 text-sm text-red-200 transition hover:bg-red-900/30"
             >
               Try again
             </button>
@@ -61,9 +75,9 @@ const Projects = ({ username, limit = 6 }: ProjectsProps) => {
         )}
 
         {!isLoading && !isError && projects.length > 0 && (
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
         )}
