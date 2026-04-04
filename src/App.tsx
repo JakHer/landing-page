@@ -7,8 +7,8 @@ const App = () => {
   return (
     <>
       <Hero
-        title="I help startups build fast, conversion-focused interfaces with React."
-        subtitle="I build modern frontends with React + TypeScript, focused on performance, UX, and maintainable code."
+        title="I help startups ship fast, polished React interfaces that convert."
+        subtitle="I design and build high-quality frontends for startups and product teams, with a focus on speed, clarity, and maintainable React code."
         primaryCtaLabel="Start a project"
         primaryCtaHref="#contact"
         secondaryCtaLabel="View projects"
