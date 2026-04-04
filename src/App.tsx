@@ -1,8 +1,20 @@
+import Hero from "./components/Hero/Hero";
+import Projects from "./components/Projects/Projects";
+
 const App = () => {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <>
+      <Hero
+        title="I help startups build fast, conversion-focused interfaces with React."
+        subtitle="I build modern frontends with React + TypeScript, focused on performance, UX, and maintainable code."
+        primaryCtaLabel="Book a 15-min call"
+        primaryCtaHref="#contact"
+        secondaryCtaLabel="View projects"
+        secondaryCtaHref="#projects"
+      />
+
+      <Projects username="JakHer" limit={6} />
+    </>
   );
 };
 
