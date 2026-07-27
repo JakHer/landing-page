@@ -5,47 +5,47 @@
   viewBox="0 0 1200 630"
   fill="none"
 >
-  <rect width="1200" height="630" fill="#050505" />
-  <rect x="24" y="24" width="1152" height="582" rx="40" stroke="#27272A" />
+  <rect width="1200" height="630" fill="#F7F7F2" />
+  <rect x="24" y="24" width="1152" height="582" rx="40" fill="#FFFFFF" fill-opacity="0.72" stroke="#D4D4D8" />
 
   <g opacity="0.8">
     <circle cx="1034" cy="118" r="204" fill="url(#glowA)" />
     <circle cx="912" cy="520" r="220" fill="url(#glowB)" />
   </g>
 
-  <rect x="84" y="84" width="120" height="120" rx="28" fill="#050505" />
+  <rect x="84" y="84" width="120" height="120" rx="28" fill="#FFFFFF" />
   <rect
     x="84"
     y="84"
     width="120"
     height="120"
     rx="28"
-    stroke="white"
-    stroke-opacity="0.18"
+    stroke="#18181B"
+    stroke-opacity="0.16"
     stroke-width="2"
   />
   <path
     d="M138 112V156C138 169.255 127.255 180 114 180C108.692 180 103.93 178.238 100 175"
-    stroke="white"
+    stroke="#18181B"
     stroke-width="10"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
   <path
     d="M160 112V180"
-    stroke="white"
+    stroke="#18181B"
     stroke-width="10"
     stroke-linecap="round"
   />
   <path
     d="M160 145H184"
-    stroke="white"
+    stroke="#18181B"
     stroke-width="10"
     stroke-linecap="round"
   />
   <path
     d="M184 112V180"
-    stroke="white"
+    stroke="#18181B"
     stroke-width="10"
     stroke-linecap="round"
   />
@@ -53,7 +53,7 @@
   <text
     x="84"
     y="264"
-    fill="#A1A1AA"
+    fill="#52525B"
     font-family="'Inter', Arial, sans-serif"
     font-size="24"
     letter-spacing="7"
@@ -64,7 +64,7 @@
   <text
     x="84"
     y="360"
-    fill="white"
+    fill="#09090B"
     font-family="'Space Grotesk', 'Inter', Arial, sans-serif"
     font-size="66"
     font-weight="700"
@@ -74,7 +74,7 @@
   <text
     x="84"
     y="438"
-    fill="white"
+    fill="#09090B"
     font-family="'Space Grotesk', 'Inter', Arial, sans-serif"
     font-size="66"
     font-weight="700"
@@ -85,7 +85,7 @@
   <text
     x="84"
     y="504"
-    fill="#D4D4D8"
+    fill="#3F3F46"
     font-family="'Inter', Arial, sans-serif"
     font-size="28"
   >
@@ -94,7 +94,7 @@
   <text
     x="84"
     y="544"
-    fill="#D4D4D8"
+    fill="#3F3F46"
     font-family="'Inter', Arial, sans-serif"
     font-size="28"
   >
@@ -102,24 +102,24 @@
   </text>
 
   <text
-    x="908"
-    y="548"
-    fill="#A1A1AA"
+    x="1110"
+    y="574"
+    fill="#71717A"
     font-family="'Inter', Arial, sans-serif"
-    font-size="24"
+    font-size="20"
     text-anchor="end"
   >
-    jakher.dev
+    jakubhermyt.netlify.app
   </text>
 
   <defs>
     <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1034 118) rotate(90) scale(204)">
-      <stop stop-color="#FFFFFF" stop-opacity="0.18" />
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop stop-color="#93C5FD" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#93C5FD" stop-opacity="0" />
     </radialGradient>
     <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(912 520) rotate(90) scale(220)">
-      <stop stop-color="#FFFFFF" stop-opacity="0.08" />
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop stop-color="#BAE6FD" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#BAE6FD" stop-opacity="0" />
     </radialGradient>
   </defs>
 </svg>

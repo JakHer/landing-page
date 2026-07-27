@@ -18,7 +18,7 @@ const Projects = ({ username, limit = 6 }: ProjectsProps) => {
   } = useGithubRepos({ username, limit });
 
   return (
-    <section id="projects" className="section-shell py-24">
+    <section id="projects" aria-labelledby="projects-heading" className="section-shell scroll-mt-24 py-24">
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="reveal-up flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
@@ -31,14 +31,14 @@ const Projects = ({ username, limit = 6 }: ProjectsProps) => {
             >
               Selected Projects
             </h2>
-            <p className="mt-4 max-w-[62ch] text-zinc-300">
-              Real repositories pulled directly from my GitHub profile, chosen
-              to show frontend quality, momentum, and technical range.
+            <p className="mt-4 max-w-[62ch] text-zinc-700">
+              A focused selection of shipped interfaces and experiments. Every
+              card links to the source, with a live build where one is available.
             </p>
           </div>
 
-          <div className="glass-card rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-zinc-300">
-            Live GitHub data. Filtered and ranked from current repositories.
+          <div className="glass-card rounded-2xl border border-black/10 bg-white/70 px-5 py-4 text-sm text-zinc-700">
+            Live from GitHub. Updated automatically.
           </div>
         </div>
 
@@ -57,13 +57,13 @@ const Projects = ({ username, limit = 6 }: ProjectsProps) => {
         )}
 
         {isError && (
-          <div className="mt-8 rounded-2xl border border-red-900/60 bg-red-950/20 p-5">
-            <p className="text-red-300">
+          <div className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-5">
+            <p className="text-red-700">
               {(error as Error)?.message || "Failed to load projects."}
             </p>
             <button
               onClick={() => refetch()}
-              className="mt-4 rounded-xl border border-red-700 px-4 py-2 text-sm text-red-200 transition hover:bg-red-900/30"
+              className="mt-4 rounded-xl border border-red-300 px-4 py-2 text-sm text-red-700 transition hover:bg-red-100"
             >
               Try again
             </button>
