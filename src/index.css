@@ -8,37 +8,44 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  @apply font-sans bg-black text-white antialiased;
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 28%),
-    radial-gradient(circle at 85% 18%, rgba(255, 255, 255, 0.08), transparent 24%),
-    linear-gradient(180deg, #050505 0%, #09090b 46%, #050505 100%);
+  @apply font-sans bg-[#f7f7f2] text-zinc-950 antialiased;
+  background: #f7f7f5;
   min-height: 100vh;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.12;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at center, black, transparent 88%);
+  display: none;
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(37, 99, 235, 0.9);
   color: white;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 0.75rem;
+  background: #2563eb;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 #root {
@@ -57,14 +64,14 @@ body::before {
   width: min(88vw, 980px);
   height: 1px;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  background: linear-gradient(90deg, transparent, rgba(24, 24, 27, 0.14), transparent);
 }
 
 .glass-card {
   backdrop-filter: blur(18px);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 24px 80px rgba(0, 0, 0, 0.28);
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 24px 70px rgba(24, 24, 27, 0.08);
 }
 
 .reveal-up {
@@ -103,13 +110,13 @@ body::before {
   position: absolute;
   inset: -120% auto -120% -35%;
   width: 28%;
-  transform: rotate(16deg);
+  transform: translateX(-220%) rotate(16deg);
   background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.28), transparent);
   transition: transform 0.8s ease;
 }
 
 .shine-on-hover:hover::after {
-  transform: translateX(420%) rotate(16deg);
+  transform: translateX(520%) rotate(16deg);
 }
 
 @keyframes reveal-up {

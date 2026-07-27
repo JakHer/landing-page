@@ -7,7 +7,6 @@ export type ProjectCardModel = {
   repoUrl: string;
   demoUrl: string | null;
   primaryTag: string | null;
-  stars: number;
   updatedAt: string;
 };
 
@@ -32,6 +31,5 @@ export const toProjectCardModel = (repo: GitHubRepo): ProjectCardModel => ({
   repoUrl: repo.html_url,
   demoUrl: normalizeUrl(repo.homepage),
   primaryTag: repo.language,
-  stars: repo.stargazers_count,
   updatedAt: repo.pushed_at,
 });
