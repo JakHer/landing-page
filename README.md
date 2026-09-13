@@ -11,7 +11,8 @@ clear path for potential clients to get in touch.
 ## Features
 
 - Responsive, mobile-first layout
-- Live project data fetched from the GitHub API
+- Featured case studies for Car Diary and All Time Detailing
+- Live additional project data fetched from the GitHub API
 - Automatic project filtering and ranking
 - Loading, empty, and error states for repository data
 - Accessible keyboard focus and reduced-motion support
@@ -27,6 +28,8 @@ clear path for potential clients to get in touch.
 - Tailwind CSS 4
 - TanStack Query
 - GitHub REST API
+- GSAP ScrollTrigger
+- Playwright
 
 ## Getting started
 
@@ -51,6 +54,7 @@ The local URL will be printed in the terminal, usually
 npm run dev      # Start the Vite development server
 npm run build    # Type-check and create a production build
 npm run lint     # Run ESLint
+npm run test:e2e # Run desktop and mobile browser tests
 npm run preview  # Preview the production build locally
 ```
 
@@ -69,14 +73,18 @@ will pick up the changes automatically after its query cache refreshes.
 src/
 |-- components/
 |   |-- Contact/
-|   |-- Footer/
+|   |-- FeaturedProjects/
 |   |-- Hero/
+|   |-- PortfolioStory/
 |   |-- Projects/
 |   |-- hooks/
 |   `-- lib/
 |-- App.tsx
 |-- index.css
 `-- main.tsx
+tests/
+`-- portfolio.spec.ts
+playwright.config.ts
 ```
 
 ## Deployment

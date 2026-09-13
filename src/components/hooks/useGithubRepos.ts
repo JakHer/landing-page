@@ -5,11 +5,16 @@ import { toProjectCardModel, type ProjectCardModel } from "../lib/project-card";
 type UseGithubReposParams = {
   username: string;
   limit?: number;
+  excludeNames?: string[];
 };
 
-export const useGithubRepos = ({ username, limit = 6 }: UseGithubReposParams) =>
+export const useGithubRepos = ({
+  username,
+  limit = 6,
+  excludeNames = [],
+}: UseGithubReposParams) =>
   useQuery<GitHubRepo[], Error, ProjectCardModel[]>({
-    queryKey: ["github-repos", username, limit],
+    queryKey: ["github-repos", username, limit, excludeNames],
     queryFn: () => fetchGithubRepos(username),
     enabled: Boolean(username),
     staleTime: 1000 * 60 * 10,
@@ -18,6 +23,7 @@ export const useGithubRepos = ({ username, limit = 6 }: UseGithubReposParams) =>
     select: (repos) =>
       repos
         .filter((repo) => !repo.fork)
+        .filter((repo) => !excludeNames.includes(repo.name))
         .filter(
           (repo) => repo.description && repo.description.trim().length > 0,
         )
