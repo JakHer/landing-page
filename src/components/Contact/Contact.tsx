@@ -1,16 +1,54 @@
 import { useState } from "react";
 
-const engagementPoints = [
-  "Startup landing pages that need clearer messaging and stronger conversion flow.",
-  "React products that need a faster, cleaner frontend before the next release.",
-  "Product teams that want senior frontend support without extra overhead.",
+const strengths = [
+  "Complex, data-rich product interfaces",
+  "Maintainable React and TypeScript systems",
+  "Accessible UI with thoughtful interaction states",
 ];
 
-const processPoints = [
-  "What you are building and who it is for.",
-  "The main problem right now, whether it is UX, speed, or frontend delivery.",
-  "Any links to the product, repo, or designs if you already have them.",
-];
+const ContactActions = () => (
+  <div className="flex flex-wrap gap-3">
+    <a href="mailto:kubahermyt@gmail.com?subject=Frontend%20opportunity" className="bg-primary hover:bg-primary-hover rounded-full px-6 py-3.5 font-bold text-white transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-night-accent">Email me</a>
+    <a href="https://www.linkedin.com/in/jakub-hermyt/" target="_blank" rel="noreferrer" className="rounded-full border border-white/20 px-6 py-3.5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-night-accent">LinkedIn</a>
+    <a href="https://github.com/JakHer" target="_blank" rel="noreferrer" className="rounded-full border border-white/20 px-6 py-3.5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-night-accent">GitHub</a>
+  </div>
+);
+
+const ContactContent = ({ onCopy, copied }: { onCopy: () => void; copied: boolean }) => (
+  <div className="mx-auto grid h-full w-full max-w-6xl items-center gap-14 px-6 pb-16 pt-32 lg:grid-cols-[1.1fr_0.9fr]">
+    <div>
+      <p className="contact-kicker text-night-accent text-sm font-bold uppercase tracking-[0.26em]">04 / Contact</p>
+      <h2 id="contact-heading" className="contact-title mt-6 max-w-3xl font-display text-6xl font-bold leading-[0.86] tracking-[-0.065em] xl:text-8xl">
+        LET&apos;S BUILD<br />WHAT&apos;S NEXT.
+      </h2>
+      <p className="contact-copy mt-7 max-w-xl text-lg leading-8 text-white/60">
+        Looking for a frontend developer who thinks beyond the component? Send me the role or product context.
+      </p>
+      <div className="contact-actions mt-9"><ContactActions /></div>
+      <div className="contact-email mt-6 flex items-center gap-2 text-sm text-white/45">
+        <span>kubahermyt@gmail.com</span>
+        <button type="button" onClick={onCopy} className="rounded-lg px-2 py-1 font-bold transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-night-accent">
+          {copied ? "Copied" : "Copy"}
+        </button>
+        <span className="sr-only" aria-live="polite">{copied ? "Email address copied" : ""}</span>
+      </div>
+      <p className="mt-8 hidden text-xs uppercase tracking-[0.16em] text-white/60 lg:block">© 2026 Jakub Hermyt · React + TypeScript</p>
+    </div>
+
+    <div className="contact-strengths rounded-[2rem] border border-white/10 bg-white/[0.05] p-8 backdrop-blur-sm">
+      <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/70">What I bring</p>
+      <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
+        {strengths.map((strength, index) => (
+          <li key={strength} className="grid grid-cols-[auto_1fr] items-center gap-5 py-5">
+            <span className="text-night-accent font-mono text-xs">0{index + 1}</span>
+            <span className="leading-7 text-white/70">{strength}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-8 text-xs uppercase tracking-[0.16em] text-white/60 lg:hidden">© 2026 Jakub Hermyt · React + TypeScript</p>
+    </div>
+  </div>
+);
 
 const Contact = () => {
   const [emailCopied, setEmailCopied] = useState(false);
@@ -22,127 +60,21 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="section-shell scroll-mt-24 py-24">
-      <div className="mx-auto w-full max-w-6xl px-6">
-        <div className="glass-card overflow-hidden rounded-[2rem] border border-black/10 bg-white/85">
-          <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="relative px-8 py-10 sm:px-10 sm:py-12">
-              <div className="reveal-up relative">
-                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                  Contact
-                </p>
-
-                <h2 id="contact-heading" className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight tracking-[-0.03em] md:text-5xl">
-                  Let&apos;s make the next version of your product feel sharper,
-                  faster, and easier to ship.
-                </h2>
-
-                <p className="mt-5 max-w-[62ch] text-base leading-7 text-zinc-700">
-                  If you need a frontend that looks polished and moves without
-                  friction, send over the brief. I help startups with landing
-                  pages, product UI, and React codebases that need structure,
-                  speed, and a more reliable shipping rhythm.
-                </p>
-
-                <div className="mt-8">
-                  <a
-                    href="mailto:kubahermyt@gmail.com?subject=Project%20inquiry"
-                    className="shine-on-hover inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
-                  >
-                    Email me
-                  </a>
-                </div>
-
-                <div className="mt-4 flex items-center gap-2 text-sm text-zinc-600">
-                  <span>kubahermyt@gmail.com</span>
-                  <button
-                    type="button"
-                    onClick={copyEmail}
-                    aria-label={
-                      emailCopied ? "Email address copied" : "Copy email address"
-                    }
-                    className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-medium text-zinc-600 transition hover:bg-black/5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                  >
-                    {emailCopied ? (
-                      "Copied"
-                    ) : (
-                      <>
-                        <svg
-                          aria-hidden="true"
-                          viewBox="0 0 24 24"
-                          className="h-4 w-4"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.8"
-                        >
-                          <rect x="8" y="8" width="11" height="11" rx="2" />
-                          <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
-                        </svg>
-                        Copy
-                      </>
-                    )}
-                  </button>
-                  <span className="sr-only" aria-live="polite">
-                    {emailCopied ? "Email address copied" : ""}
-                  </span>
-                </div>
-
-                <div className="mt-10">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                    Good fit for
-                  </p>
-
-                  <ul className="mt-4 space-y-3 text-zinc-700">
-                    {engagementPoints.map((point) => (
-                      <li key={point} className="flex items-start gap-3">
-                        <span className="mt-2 h-2 w-2 rounded-full bg-blue-600" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="reveal-up reveal-delay-1 border-t border-black/10 bg-zinc-100/70 px-8 py-10 sm:px-10 sm:py-12 lg:border-l lg:border-t-0">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                Best first message
-              </p>
-
-              <p className="mt-4 text-lg leading-8 text-zinc-800">
-                A short message is enough. Send the context you have now, and we
-                can turn it into a concrete next step.
-              </p>
-
-              <div className="mt-8 rounded-2xl border border-black/10 bg-white/70 p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                  Include
-                </p>
-
-                <ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-700">
-                  {processPoints.map((point) => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-zinc-500" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-8 rounded-2xl border border-black/10 bg-white/40 p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                  Typical support
-                </p>
-
-                <p className="mt-3 text-sm leading-6 text-zinc-700">
-                  React feature delivery, landing page redesigns, interface
-                  cleanup, component systems, and performance-minded frontend
-                  work for growing products.
-                </p>
-              </div>
-            </div>
+    <section id="contact" aria-labelledby="contact-heading" className="relative scroll-mt-0">
+      <div className="story-desktop">
+        <div className="contact-stage bg-canvas relative h-screen overflow-hidden">
+          <div className="contact-intro absolute inset-0 flex items-center justify-center overflow-hidden text-center">
+            <p className="font-display text-[clamp(7rem,18vw,17rem)] font-bold leading-[0.75] tracking-[-0.09em] text-ink">SAY<br /><span className="text-primary">HELLO.</span></p>
+          </div>
+          <div className="contact-scene bg-night absolute inset-0 text-white">
+            <div className="project-contours absolute inset-0 opacity-25" />
+            <ContactContent onCopy={copyEmail} copied={emailCopied} />
           </div>
         </div>
+      </div>
+
+      <div className="story-static bg-night text-white">
+        <ContactContent onCopy={copyEmail} copied={emailCopied} />
       </div>
     </section>
   );

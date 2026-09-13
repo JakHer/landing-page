@@ -1,9 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap");
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-ink: #111216;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-soft: #eff4ff;
+  --color-night: #111216;
+  --color-night-raised: #1a1d23;
+  --color-night-accent: #9ec5ff;
 }
 
 html {
@@ -16,8 +26,7 @@ html {
 }
 
 body {
-  @apply font-sans bg-[#f7f7f2] text-zinc-950 antialiased;
-  background: #f7f7f5;
+  @apply bg-canvas font-sans text-ink antialiased;
   min-height: 100vh;
 }
 
@@ -37,7 +46,7 @@ body::before {
   z-index: 100;
   transform: translateY(-200%);
   border-radius: 0.75rem;
-  background: #2563eb;
+  background: var(--color-primary);
   padding: 0.75rem 1rem;
   font-weight: 700;
   color: white;
@@ -80,26 +89,6 @@ body::before {
   animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.reveal-delay-1 {
-  animation-delay: 0.08s;
-}
-
-.reveal-delay-2 {
-  animation-delay: 0.16s;
-}
-
-.reveal-delay-3 {
-  animation-delay: 0.24s;
-}
-
-.float-slow {
-  animation: float-slow 9s ease-in-out infinite;
-}
-
-.float-slower {
-  animation: float-slow 13s ease-in-out infinite reverse;
-}
-
 .shine-on-hover {
   position: relative;
   overflow: hidden;
@@ -119,6 +108,110 @@ body::before {
   transform: translateX(520%) rotate(16deg);
 }
 
+.project-contours {
+  background-image:
+    radial-gradient(ellipse at 18% 28%, transparent 0 17%, rgba(255, 255, 255, 0.1) 17.2% 17.35%, transparent 17.55%),
+    radial-gradient(ellipse at 78% 68%, transparent 0 23%, rgba(255, 255, 255, 0.08) 23.2% 23.35%, transparent 23.55%),
+    radial-gradient(ellipse at 52% 44%, transparent 0 34%, rgba(255, 255, 255, 0.06) 34.2% 34.35%, transparent 34.55%);
+  background-size: 70% 82%, 68% 76%, 100% 120%;
+  background-position: -12% -8%, 112% 106%, center;
+  background-repeat: no-repeat;
+}
+
+.scroll-line {
+  animation: scroll-line 1.8s ease-in-out infinite;
+}
+
+.project-desktop {
+  display: none;
+}
+
+.project-static {
+  display: block;
+}
+
+.story-desktop {
+  display: none;
+}
+
+.story-static {
+  display: block;
+}
+
+.master-viewport {
+  overflow: visible;
+}
+
+.master-progress-shell {
+  position: fixed;
+}
+
+.nav-indicator {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header-brand {
+  animation: header-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.header-menu {
+  animation: header-enter 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-ambient {
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.045) 42%, transparent 70%);
+  transform: translate3d(0, 0, 0) scale(1);
+  animation: ambient-drift 14s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .hero-stage .hero-reveal,
+  .project-stage .scene-one,
+  .contact-stage .contact-title,
+  .contact-stage .contact-copy,
+  .contact-stage .contact-actions,
+  .contact-stage .contact-email,
+  .contact-stage .contact-strengths {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .project-stage .scene-two {
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+  }
+
+  .contact-stage .contact-scene {
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  .project-desktop {
+    display: block;
+  }
+
+  .project-static {
+    display: none;
+  }
+
+  .story-desktop {
+    display: block;
+  }
+
+  .story-static {
+    display: none;
+  }
+
+  .master-viewport {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .master-progress-shell {
+    position: absolute;
+  }
+}
+
 @keyframes reveal-up {
   to {
     opacity: 1;
@@ -126,14 +219,36 @@ body::before {
   }
 }
 
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-110%);
   }
 
-  50% {
-    transform: translate3d(0, -12px, 0);
+  55%,
+  100% {
+    transform: translateY(210%);
+  }
+}
+
+@keyframes header-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes ambient-drift {
+  from {
+    transform: translate3d(0, -2%, 0) scale(0.96);
+  }
+
+  to {
+    transform: translate3d(-12%, 8%, 0) scale(1.08);
   }
 }
 
@@ -143,8 +258,10 @@ body::before {
   }
 
   .reveal-up,
-  .float-slow,
-  .float-slower {
+  .header-brand,
+  .header-menu,
+  .hero-ambient,
+  .scroll-line {
     animation: none;
     opacity: 1;
     transform: none;
@@ -152,5 +269,9 @@ body::before {
 
   .shine-on-hover::after {
     display: none;
+  }
+
+  .nav-indicator {
+    transition: none;
   }
 }
