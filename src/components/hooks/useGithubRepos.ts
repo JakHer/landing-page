@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useMemo, useState } from "react";
 import { fetchGithubRepos, type GitHubRepo } from "../lib/github";
 import { toProjectCardModel, type ProjectCardModel } from "../lib/project-card";
 
@@ -12,30 +12,59 @@ export const useGithubRepos = ({
   username,
   limit = 6,
   excludeNames = [],
-}: UseGithubReposParams) =>
-  useQuery<GitHubRepo[], Error, ProjectCardModel[]>({
-    queryKey: ["github-repos", username, limit, excludeNames],
-    queryFn: () => fetchGithubRepos(username),
-    enabled: Boolean(username),
-    staleTime: 1000 * 60 * 10,
-    gcTime: 1000 * 60 * 30,
-    retry: 1,
-    select: (repos) =>
-      repos
-        .filter((repo) => !repo.fork)
-        .filter((repo) => !excludeNames.includes(repo.name))
-        .filter(
-          (repo) => repo.description && repo.description.trim().length > 0,
-        )
-        .filter((repo) => repo.stargazers_count > 0 || repo.homepage)
-        .sort((a, b) => {
-          if (b.stargazers_count !== a.stargazers_count) {
-            return b.stargazers_count - a.stargazers_count;
-          }
-          return (
-            new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
-          );
-        })
-        .slice(0, limit)
-        .map(toProjectCardModel),
-  });
+}: UseGithubReposParams) => {
+  const [repos, setRepos] = useState<GitHubRepo[]>([]);
+  const [isFetching, setIsFetching] = useState(Boolean(username));
+  const [isError, setIsError] = useState(false);
+  const excludedKey = excludeNames.join("\u0000");
+
+  useEffect(() => {
+    if (!username) return;
+
+    let active = true;
+
+    void fetchGithubRepos(username)
+      .then((response) => {
+        if (active) setRepos(response);
+      })
+      .catch(() => {
+        if (active) setIsError(true);
+      })
+      .finally(() => {
+        if (active) setIsFetching(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [username]);
+
+  const data = useMemo<ProjectCardModel[]>(() => {
+    const excluded = new Set(excludedKey.split("\u0000").filter(Boolean));
+
+    return repos
+      .filter((repo) => !repo.fork)
+      .filter((repo) => !excluded.has(repo.name))
+      .filter(
+        (repo) => repo.description && repo.description.trim().length > 0,
+      )
+      .filter((repo) => repo.stargazers_count > 0 || repo.homepage)
+      .sort((a, b) => {
+        if (b.stargazers_count !== a.stargazers_count) {
+          return b.stargazers_count - a.stargazers_count;
+        }
+        return (
+          new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
+        );
+      })
+      .slice(0, limit)
+      .map(toProjectCardModel);
+  }, [excludedKey, limit, repos]);
+
+  return {
+    data,
+    isLoading: isFetching && repos.length === 0,
+    isFetching,
+    isError,
+  };
+};

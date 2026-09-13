@@ -16,6 +16,7 @@ type CachedRepos = {
 };
 
 const CACHE_TTL = 1000 * 60 * 30;
+const pendingRequests = new Map<string, Promise<GitHubRepo[]>>();
 
 const cacheKey = (username: string) => `github-repos:${username.toLowerCase()}`;
 
@@ -43,7 +44,7 @@ const writeCache = (username: string, repos: GitHubRepo[]) => {
   }
 };
 
-export const fetchGithubRepos = async (
+const requestGithubRepos = async (
   username: string,
 ): Promise<GitHubRepo[]> => {
   const cached = readCache(username);
@@ -83,4 +84,16 @@ export const fetchGithubRepos = async (
 
   writeCache(username, repos);
   return repos;
+};
+
+export const fetchGithubRepos = (username: string): Promise<GitHubRepo[]> => {
+  const key = username.toLowerCase();
+  const pending = pendingRequests.get(key);
+  if (pending) return pending;
+
+  const request = requestGithubRepos(username).finally(() => {
+    pendingRequests.delete(key);
+  });
+  pendingRequests.set(key, request);
+  return request;
 };

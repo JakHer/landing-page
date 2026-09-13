@@ -116,6 +116,19 @@ body::before {
   background-size: 70% 82%, 68% 76%, 100% 120%;
   background-position: -12% -8%, 112% 106%, center;
   background-repeat: no-repeat;
+  transform: translate3d(-1.5%, -1%, 0) scale(1.06);
+  transform-origin: center;
+  animation: contour-drift 24s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  will-change: transform;
+}
+
+.scene-two .project-contours {
+  animation-direction: alternate-reverse;
+  animation-duration: 29s;
+}
+
+.contact-scene .project-contours {
+  animation-duration: 32s;
 }
 
 .scroll-line {
@@ -177,9 +190,17 @@ body::before {
     opacity: 0;
   }
 
-  .project-stage .scene-two {
+  .project-stage .scene-two .scene-background {
     clip-path: inset(0 100% 0 0);
     will-change: clip-path;
+  }
+
+  .project-stage .scene-two .project-card,
+  .project-stage .scene-two .scene-meta,
+  .project-stage .scene-two .scene-module,
+  .project-stage .scene-two .scene-footer {
+    visibility: hidden;
+    opacity: 0;
   }
 
   .contact-stage .contact-scene {
@@ -252,6 +273,20 @@ body::before {
   }
 }
 
+@keyframes contour-drift {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.06) rotate(-0.4deg);
+  }
+
+  45% {
+    transform: translate3d(0.8%, 1.2%, 0) scale(1.085) rotate(0.25deg);
+  }
+
+  100% {
+    transform: translate3d(1.8%, -0.4%, 0) scale(1.07) rotate(0.6deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -261,6 +296,7 @@ body::before {
   .header-brand,
   .header-menu,
   .hero-ambient,
+  .project-contours,
   .scroll-line {
     animation: none;
     opacity: 1;

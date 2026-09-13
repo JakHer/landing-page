@@ -45,6 +45,39 @@ test.describe("desktop scroll story", { tag: "@desktop" }, () => {
       )
       .toBeGreaterThan(0.94);
   });
+
+  test("brings the second featured project into the viewport", async ({ page }) => {
+    await page.getByRole("link", { name: "Work" }).click();
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY / (window.innerHeight * 8)))
+      .toBeGreaterThan(0.2);
+
+    await page.evaluate(() => {
+      document.documentElement.style.setProperty(
+        "scroll-behavior",
+        "auto",
+        "important",
+      );
+      window.scrollTo(0, window.innerHeight * 8 * 0.52);
+    });
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY / (window.innerHeight * 8)))
+      .toBeGreaterThan(0.5);
+
+    const secondScene = page.locator(".scene-two");
+    await expect(secondScene).toBeVisible();
+    await expect
+      .poll(() =>
+        secondScene.locator(".scene-background").evaluate((element) => {
+          const clipPath = getComputedStyle(element).clipPath;
+          const rightInset = clipPath.match(
+            /inset\([^\s]+\s+([\d.]+)%/,
+          )?.[1];
+          return rightInset ? Number(rightInset) : 100;
+        }),
+      )
+      .toBeLessThan(50);
+  });
 });
 
 test.describe("mobile layout", { tag: "@mobile" }, () => {

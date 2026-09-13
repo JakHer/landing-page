@@ -14,7 +14,7 @@ const ArrowIcon = () => (
 const HeroContent = ({ animated = false }: { animated?: boolean }) => (
   <>
     <div className={`${animated ? "hero-name" : ""} absolute inset-0 flex items-center justify-center overflow-hidden`}>
-      <h1 id="hero-heading" className="text-center font-display text-[clamp(5rem,15vw,14rem)] font-bold leading-[0.7] tracking-[-0.09em]">
+      <h1 className="text-center font-display text-[clamp(5rem,15vw,14rem)] font-bold leading-[0.7] tracking-[-0.09em]">
         JAKUB<br /><span className="text-primary">HERMYT</span>
       </h1>
     </div>
@@ -67,7 +67,7 @@ const HeroContent = ({ animated = false }: { animated?: boolean }) => (
 
 const Hero = () => {
   return (
-    <section id="top" aria-labelledby="hero-heading" className="relative scroll-mt-0">
+    <section id="top" aria-label="Introduction" className="relative scroll-mt-0">
       <div className="story-desktop">
         <div className="hero-stage bg-canvas relative h-screen overflow-hidden">
           <div aria-hidden="true" className="hero-ambient absolute -right-[8vw] top-[14vh] h-[34rem] w-[34rem] rounded-full" />

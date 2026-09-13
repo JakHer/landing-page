@@ -62,7 +62,12 @@ const PortfolioStory = () => {
       gsap.set(select(".hero-reveal"), { autoAlpha: 0, y: 80 });
       gsap.set(select(".hero-capabilities"), { x: 100, rotation: 2 });
       gsap.set(select(".scene-one"), { autoAlpha: 0 });
-      gsap.set(select(".scene-two"), { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
+      gsap.set(select(".scene-two"), {
+        autoAlpha: 1,
+      });
+      gsap.set(select(".scene-two .scene-background"), {
+        clipPath: "inset(0 100% 0 0)",
+      });
       gsap.set(select(".github-track"), { x: () => window.innerWidth * 0.58 });
       gsap.set(select(".contact-stage .contact-scene"), { clipPath: "circle(0% at 50% 50%)" });
       gsap.set(select(".contact-stage .contact-title, .contact-stage .contact-copy, .contact-stage .contact-actions, .contact-stage .contact-email"), { y: 70, autoAlpha: 0 });
@@ -78,6 +83,20 @@ const PortfolioStory = () => {
           y: (index) => (index + 1) * 9,
         });
       });
+
+      gsap.set(
+        select(
+          ".scene-two .project-card, .scene-two .scene-meta, .scene-two .scene-module, .scene-two .scene-footer",
+        ),
+        { autoAlpha: 0 },
+      );
+      gsap.set(select(".scene-two .project-card"), {
+        x: 80,
+        y: 24,
+        rotation: 1.5,
+        scale: 0.96,
+      });
+      gsap.set(select(".scene-two .scene-footer"), { y: 20 });
 
       const githubDistance = () =>
         Math.max(githubTrack.scrollWidth - window.innerWidth + 160, 0);
@@ -124,10 +143,13 @@ const PortfolioStory = () => {
         .to(select(".scene-one .project-card"), { y: 0, rotation: 0, scale: 1, duration: 0.1 }, 0.26)
         .to(select(".scene-one .scene-title-left, .scene-one .scene-title-right"), { xPercent: 0, duration: 0.12 }, 0.26)
         .to(select(".scene-one .scene-meta, .scene-one .scene-module"), { x: 0, y: 0, duration: 0.1 }, 0.27)
-        .to(select(".scene-two"), { clipPath: "inset(0 0% 0 0)", duration: 0.11 }, 0.4)
-        .to(select(".scene-two .project-card"), { y: 0, rotation: 0, scale: 1, duration: 0.11 }, 0.43)
-        .to(select(".scene-two .scene-title-left, .scene-two .scene-title-right"), { xPercent: 0, duration: 0.12 }, 0.43)
-        .to(select(".scene-two .scene-meta, .scene-two .scene-module"), { x: 0, y: 0, duration: 0.11 }, 0.44)
+        .to(select(".scene-two .scene-background"), { clipPath: "inset(0 0% 0 0)", duration: 0.17, ease: "power1.inOut" }, 0.37)
+        .to(select(".scene-two .scene-title-left, .scene-two .scene-title-right"), { xPercent: 0, duration: 0.14 }, 0.4)
+        .to(select(".scene-one .project-card"), { x: -80, scale: 0.96, autoAlpha: 0, duration: 0.09, ease: "power1.in" }, 0.41)
+        .to(select(".scene-one .scene-meta, .scene-one .scene-module, .scene-one .scene-footer"), { autoAlpha: 0, duration: 0.08 }, 0.43)
+        .to(select(".scene-two .project-card"), { x: 0, y: 0, rotation: 0, scale: 1, autoAlpha: 1, duration: 0.1, ease: "power1.out" }, 0.46)
+        .to(select(".scene-two .scene-meta, .scene-two .scene-module"), { x: 0, y: 0, autoAlpha: 1, duration: 0.09 }, 0.47)
+        .to(select(".scene-two .scene-footer"), { y: 0, autoAlpha: 1, duration: 0.08 }, 0.48)
         .to(track, { y: () => -window.innerHeight * 2, duration: 0.08 }, 0.56)
         .to(select(".github-title"), { scale: 1.35, autoAlpha: 0.07, duration: 0.1 }, 0.66)
         .to(select(".github-track"), { x: () => -githubDistance(), duration: 0.16 }, 0.66)
