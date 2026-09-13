@@ -6,7 +6,7 @@ export default defineConfig({
   reporter: "line",
   use: {
     baseURL: "http://127.0.0.1:4173",
-    channel: "chrome",
+    channel: process.env.CI ? undefined : "chrome",
     trace: "retain-on-failure",
   },
   projects: [
@@ -18,7 +18,11 @@ export default defineConfig({
     {
       name: "mobile",
       grep: /@mobile/,
-      use: { ...devices["iPhone 13"], browserName: "chromium", channel: "chrome" },
+      use: {
+        ...devices["iPhone 13"],
+        browserName: "chromium",
+        channel: process.env.CI ? undefined : "chrome",
+      },
     },
   ],
   webServer: {

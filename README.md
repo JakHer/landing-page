@@ -1,5 +1,7 @@
 # Jakub Hermyt - Developer Portfolio
 
+[![CI](https://github.com/JakHer/landing-page/actions/workflows/ci.yml/badge.svg)](https://github.com/JakHer/landing-page/actions/workflows/ci.yml)
+
 A responsive developer portfolio built with React and TypeScript. It presents
 selected frontend work using live repository data from GitHub and provides a
 clear path for potential clients to get in touch.
