@@ -28,7 +28,6 @@ clear path for potential clients to get in touch.
 - TypeScript
 - Vite
 - Tailwind CSS 4
-- TanStack Query
 - GitHub REST API
 - GSAP ScrollTrigger
 - Playwright

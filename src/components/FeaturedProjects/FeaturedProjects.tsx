@@ -65,7 +65,7 @@ const ProjectLinks = ({ project }: { project: Project }) => (
 );
 
 const SystemCard = ({ project }: { project: Project }) => (
-  <div className="w-[min(42vw,520px)] rounded-[2rem] border border-white/15 p-7 shadow-[0_35px_100px_rgba(0,0,0,0.3)] backdrop-blur-md max-lg:w-full" style={{ backgroundColor: `${project.palette.card}f2` }}>
+  <div className="w-[min(42vw,520px)] rounded-[2rem] border border-white/15 p-7 shadow-[0_35px_100px_rgba(0,0,0,0.3)] backdrop-blur-md max-lg:w-full" style={{ backgroundColor: `${project.palette.card}e6` }}>
     <div className="flex items-center justify-between">
       <span className="text-xs font-bold uppercase tracking-[0.22em] text-white/75">Product case study</span>
       <span className="h-2.5 w-2.5 rounded-full shadow-[0_0_20px_currentColor]" style={{ backgroundColor: featuredPalette.accent, color: featuredPalette.accent }} />
@@ -91,14 +91,16 @@ const ProjectScene = ({ project, number, sceneClass }: { project: Project; numbe
 
   return (
     <div className={`project-scene ${sceneClass} pointer-events-none absolute inset-0 overflow-hidden text-white`}>
-      <div className="absolute inset-0" style={{ backgroundColor: project.palette.background }} />
-      <div className="project-contours absolute inset-0 opacity-35" />
+      <div className="scene-background absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0" style={{ backgroundColor: project.palette.background }} />
+        <div className="project-contours absolute inset-0 opacity-35" />
 
-      <div className="scene-title-left absolute inset-x-0 top-[12vh] whitespace-nowrap font-display text-[clamp(6rem,15vw,14rem)] font-bold leading-[0.7] tracking-[-0.08em] text-white/[0.055]">
-        {project.displayTitle[0]} {project.displayTitle[0]}
-      </div>
-      <div className="scene-title-right absolute inset-x-0 bottom-[9vh] whitespace-nowrap text-right font-display text-[clamp(6rem,15vw,14rem)] font-bold leading-[0.7] tracking-[-0.08em] text-white/[0.055]">
-        {project.displayTitle[1]} {project.displayTitle[1]}
+        <div className="scene-title-left absolute inset-x-0 top-[12vh] whitespace-nowrap font-display text-[clamp(6rem,15vw,14rem)] font-bold leading-[0.7] tracking-[-0.08em] text-white/[0.055]">
+          {project.displayTitle[0]} {project.displayTitle[0]}
+        </div>
+        <div className="scene-title-right absolute inset-x-0 bottom-[9vh] whitespace-nowrap text-right font-display text-[clamp(6rem,15vw,14rem)] font-bold leading-[0.7] tracking-[-0.08em] text-white/[0.055]">
+          {project.displayTitle[1]} {project.displayTitle[1]}
+        </div>
       </div>
 
       <div className="absolute inset-x-0 top-28 mx-auto flex w-full max-w-6xl items-start justify-between px-6">

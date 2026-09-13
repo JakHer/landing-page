@@ -34,7 +34,7 @@ const Projects = ({ username, limit = 6, excludeNames }: ProjectsProps) => {
       : [fallbackCard];
 
   return (
-    <section id="github-projects" aria-labelledby="projects-heading" className="relative scroll-mt-0">
+    <section id="github-projects" aria-label="More projects" className="relative scroll-mt-0">
       <div className="story-desktop">
         <div className="github-stage bg-canvas relative h-screen overflow-hidden">
           <div className="project-contours absolute inset-0 opacity-60" />
@@ -48,7 +48,7 @@ const Projects = ({ username, limit = 6, excludeNames }: ProjectsProps) => {
             </p>
           </div>
 
-          <h2 id="projects-heading" className="github-title absolute inset-0 flex items-center justify-center whitespace-nowrap font-display text-[clamp(7rem,17vw,16rem)] font-bold tracking-[-0.085em] text-zinc-950">
+          <h2 className="github-title absolute inset-0 flex items-center justify-center whitespace-nowrap font-display text-[clamp(7rem,17vw,16rem)] font-bold tracking-[-0.085em] text-zinc-950">
             OPEN SOURCE
           </h2>
 

@@ -18,7 +18,7 @@ const ContactContent = ({ onCopy, copied }: { onCopy: () => void; copied: boolea
   <div className="mx-auto grid h-full w-full max-w-6xl items-center gap-14 px-6 pb-16 pt-32 lg:grid-cols-[1.1fr_0.9fr]">
     <div>
       <p className="contact-kicker text-night-accent text-sm font-bold uppercase tracking-[0.26em]">04 / Contact</p>
-      <h2 id="contact-heading" className="contact-title mt-6 max-w-3xl font-display text-6xl font-bold leading-[0.86] tracking-[-0.065em] xl:text-8xl">
+      <h2 className="contact-title mt-6 max-w-3xl font-display text-6xl font-bold leading-[0.86] tracking-[-0.065em] xl:text-8xl">
         LET&apos;S BUILD<br />WHAT&apos;S NEXT.
       </h2>
       <p className="contact-copy mt-7 max-w-xl text-lg leading-8 text-white/60">
@@ -54,13 +54,28 @@ const Contact = () => {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText("kubahermyt@gmail.com");
+    const email = "kubahermyt@gmail.com";
+
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = email;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      document.execCommand("copy");
+      field.remove();
+    }
+
     setEmailCopied(true);
     window.setTimeout(() => setEmailCopied(false), 2000);
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="relative scroll-mt-0">
+    <section id="contact" aria-label="Contact" className="relative scroll-mt-0">
       <div className="story-desktop">
         <div className="contact-stage bg-canvas relative h-screen overflow-hidden">
           <div className="contact-intro absolute inset-0 flex items-center justify-center overflow-hidden text-center">
